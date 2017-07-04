@@ -25,7 +25,7 @@ helpers do
 	end
 
 	def current_user
-		User.find_by(id: session[:user_id])
+		Dog.find_by(id: session[:user_id])
 	end
 end
 
@@ -55,6 +55,7 @@ post '/session' do
 	user = Dog.find_by(user_name: params[:user_name])
 	if user && user.authenticate(params[:password])
 		session[:user_id] = user.id
+		binding.pry
 		redirect '/'
 	else
 		erb :login

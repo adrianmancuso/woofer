@@ -1,6 +1,7 @@
 html {	
 	box-sizing: border-box;
 	background-color: floralwhite;
+	font-family: 'Raleway', sans-serif;
 }
 *, *:before, *:after {
 	box-sizing: inherit;
@@ -8,4 +9,8 @@ html {
 
 h1, h3 {
 	color: lightcoral;
+}
+
+h1 {
+	font-family: 'Walter Turncoat', cursive;
 }
