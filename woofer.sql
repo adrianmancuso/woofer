@@ -19,14 +19,15 @@ CREATE TABLE breeds(
 
 CREATE TABLE leashes(
 	id serial4 primary key,
-	dog_one_id
-	dog_two_id
+	dog_one_id integer,
+	dog_two_id integer
 );
+-- leashes are not create in psql as of yet
 
 CREATE TABLE locations(
 	id serial4 primary key,
 	location_radius circle,
-	inhabitant_id integer[] 
+	inhabitant_id integer[]  
 );
 
 CREATE TABLE private_messages(
