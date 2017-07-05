@@ -45,8 +45,7 @@ end
 
 post '/sign-up' do
 	@new_user = Dog.create(user_name: params[:user_name], image_url: params[:image_url], age: params[:age], bio: params[:bio], password: params[:password])
-	current_user = nil
-	binding.pry
+	session.clear
 	redirect '/login'
 end
 
@@ -54,6 +53,25 @@ end
 get '/login' do 
 	@dogs = Dog.all
 	erb :login
+end
+
+get '/logout' do
+	session.clear
+	redirect "/"
+end
+
+get '/edit' do
+	@dogs = Dog.all
+	erb :edit
+end
+
+patch '/dogs/:id' do 
+	@dog = Dog.find(current_user.id)
+	@dog.image_url = params[:image_url]
+	@dog.age = params[:age]
+	@dog.bio = params[:bio]
+	@dog.save
+	redirect '/'
 end
 
 post '/session' do
@@ -74,7 +92,6 @@ get '/dogs/:id' do
 end
 
 post '/dogs/:id' do 
-	binding.pry
 	@dogs = Dog.all
 	@dog = Dog.find(params[:id])
 	@new_message = PrivateMessage.create(body: params[:body], recipient_id: params[:recipient_id], sender_id: current_user.id)

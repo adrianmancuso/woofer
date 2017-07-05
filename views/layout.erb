@@ -8,7 +8,12 @@
 </head>
 <body>
 <header>
-	<h4><a href="/login">Login</a></h4>
+	
+	<% if logged_in? %>
+		<h4><a href="/logout">Logout</a></h4>
+	<% else %>
+		<h4><a href="/login">Login</a></h4>
+	<% end %>
 
 	<div> 
 		<a href="/">
@@ -17,7 +22,12 @@
 		</a>
 	</div>
 
-	<h4><a href="/sign-up">Sign Up</a></h4>
+	<% if logged_in? %>
+		<h4><a href="/edit">Edit Profile</a></h4>
+	<% else %>
+		<h4><a href="/sign-up">Sign Up</a></h4>
+	<% end %>
+
 </header>
 
 <% if logged_in? %>
