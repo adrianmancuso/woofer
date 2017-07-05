@@ -21,18 +21,20 @@ end
 helpers do
 
 	def logged_in?
-		current_user ? true :false
+		current_user ? true : false
 	end
 
 	def current_user
 		Dog.find_by(id: session[:user_id])
 	end
+
 end
 
 
 enable :sessions
 
 get '/' do
+	@dogs = Dog.all
   erb :index
 end
 
@@ -42,8 +44,9 @@ end
 
 post '/sign-up' do
 	@new_user = Dog.create(user_name: params[:user_name], image_url: params[:image_url], age: params[:age], bio: params[:bio], password: params[:password])
+	current_user = nil
 	binding.pry
-	redirect '/'
+	redirect '/login'
 end
 
 
@@ -55,9 +58,12 @@ post '/session' do
 	user = Dog.find_by(user_name: params[:user_name])
 	if user && user.authenticate(params[:password])
 		session[:user_id] = user.id
-		binding.pry
 		redirect '/'
 	else
 		erb :login
 	end
+end
+
+get '/dogs/:id' do 
+	erb :dog_profile
 end

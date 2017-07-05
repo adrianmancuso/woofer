@@ -1,4 +1,21 @@
-<% if logged_in? %>
-<h3>Hi <%= current_user.user_name %></h3>
+	<% if logged_in? %>
+<main>
+	<h3>Hi <%= current_user.user_name %>!</h3>
 
-<%end%> 
+	<img src="<%= current_user.image_url %>" alt="">
+
+	<h3>Start connecting with dogs near you:</h3>
+	<% @dogs.each do |dog| %>
+		<a href="/dogs/<%= dog['id'] %>">
+			<div class="tiles" style="background-image: url(<%= dog['image_url'] %>);">
+				<h2><%= dog['user_name'] %></h2>
+			</div>
+		</a>
+	<% end %>
+
+
+</main> 
+
+
+ 
+	<%end%>

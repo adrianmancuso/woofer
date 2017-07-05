@@ -2,15 +2,94 @@ html {
 	box-sizing: border-box;
 	background-color: floralwhite;
 	font-family: 'Raleway', sans-serif;
+	width: 100%;
 }
 *, *:before, *:after {
 	box-sizing: inherit;
 }
 
+body {
+	width: 100%;
+}
+
 h1, h3 {
-	color: lightcoral;
+	color: #DB736C;
+		margin: 0;
 }
 
 h1 {
-	font-family: 'Walter Turncoat', cursive;
+	font-size: 6em;
+	font-family: 'Zilla Slab', serif;
+}
+
+main h3 {
+	font-size: 3em;
+	line-height: 2;
+}
+
+
+header {
+	display: flex;
+	justify-content: space-between;
+	background-color: floralwhite;
+	padding: 1em;
+	width: 100%;
+	border-bottom: 0.3em solid #4273A8;
+}
+
+header a{
+}
+
+a {
+	color: #4273A8;
+	text-decoration: none;
+}
+
+img {
+	width: 30%;
+	border: 1em solid white;
+	border-bottom: 3em solid white;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+form { 
+	line-height: 2;
+}
+
+input {
+	background-color: inherit;
+}
+
+main {
+	width: 70%;
+	margin: 1em;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	display: inline-block;
+	border-right: 0.03em solid #4273A8;
+}
+
+aside {
+	margin: 1em;
+	/*background-color: #FDF3E4;*/
+	width: 25%;
+	position: absolute;
+	right: 0;
+	display: inline-block;
+	padding: 0.5em;
+	height: 80%;
+}
+
+.tiles {
+	display: inline-block;
+	width: 30vh;
+	height: 30vh;
+	background-position: center;
+	background-size: 150%;
+	margin: 0.5em;
+}
+
+.tiles h2 {
+	color: #DB736C;
 }

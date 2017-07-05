@@ -4,17 +4,38 @@
   <meta charset="UTF-8">
   <title>Hello World</title>
   <link rel='stylesheet' href='/stylesheets/main.css'>
-  <link href="https://fonts.googleapis.com/css?family=Raleway|Walter+Turncoat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Zilla+Slab" rel="stylesheet">
 </head>
 <body>
-<nav>
-	<h3><a href="/login">Login</a></h3>
+<header>
+	<h4><a href="/login">Login</a></h4>
 
-	<h1>woofer</h1>
-	<h3>get a new leash on life</h3>
+	<div> 
+		<a href="/">
+			<h1>woofer</h1>
+			<h3>get a new leash on life</h3>
+		</a>
+	</div>
 
-	<h3><a href="/sign-up">Sign Up</a></h3>
-</nav>
+	<h4><a href="/sign-up">Sign Up</a></h4>
+</header>
+
+<% if logged_in? %>
+	
+	<aside>
+	<h3>Inbox:</h3>
+	<% current_user.received_messages.each do |message|%>
+		<p><%= message['body'] %></p>
+	<%end%> 
+
+	<h3>Outbox:</h3>
+	<% current_user.sent_messages.each do |message|%>
+		<p><%= message['body'] %></p>
+	<%end%>
+</aside>
+
+<% end %>
+
   <%= yield %>
 
 </body>
