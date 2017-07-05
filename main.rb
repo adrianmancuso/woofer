@@ -39,6 +39,7 @@ get '/' do
 end
 
 get '/sign-up' do
+	@dogs = Dog.all
 	erb :sign_up
 end
 
@@ -51,10 +52,12 @@ end
 
 
 get '/login' do 
+	@dogs = Dog.all
 	erb :login
 end
 
 post '/session' do
+	@dogs = Dog.all
 	user = Dog.find_by(user_name: params[:user_name])
 	if user && user.authenticate(params[:password])
 		session[:user_id] = user.id
@@ -65,5 +68,15 @@ post '/session' do
 end
 
 get '/dogs/:id' do 
+	@dog = Dog.find(params[:id])
+	@dogs = Dog.all
+	erb :dog_profile
+end
+
+post '/dogs/:id' do 
+	binding.pry
+	@dogs = Dog.all
+	@dog = Dog.find(params[:id])
+	@new_message = PrivateMessage.create(body: params[:body], recipient_id: params[:recipient_id], sender_id: current_user.id)
 	erb :dog_profile
 end

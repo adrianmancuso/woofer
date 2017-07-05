@@ -13,7 +13,7 @@
 	<div> 
 		<a href="/">
 			<h1>woofer</h1>
-			<h3>get a new leash on life</h3>
+			<h3>a new leash on life</h3>
 		</a>
 	</div>
 
@@ -23,20 +23,28 @@
 <% if logged_in? %>
 	
 	<aside>
-	<h3>Inbox:</h3>
-	<% current_user.received_messages.each do |message|%>
-		<p><%= message['body'] %></p>
+	<h3>Inbox: ( <%= current_user.received_messages.count %> )</h3>
+	<% if current_user.received_messages.count > 0 %>
+		<% current_user.received_messages.each do |message|%>
+			<p><%= message['body'] %></p>
+			<p> <b>sent by: <%= @dogs.find(message[:sender_id]).user_name %> </b> </p>
+		<%end%> 
 	<%end%> 
 
-	<h3>Outbox:</h3>
-	<% current_user.sent_messages.each do |message|%>
-		<p><%= message['body'] %></p>
+	<h3>Outbox: ( <%= current_user.sent_messages.count %> )</h3>
+	<% if current_user.sent_messages.count > 0 %>				
+		<% current_user.sent_messages.each do |message|%>
+			<p><%= message['body'] %></p>
+			<p> <b>sent to: <%= @dogs.find(message[:recipient_id]).user_name %> </b> </p>
+		<%end%>
 	<%end%>
 </aside>
 
 <% end %>
 
   <%= yield %>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSomp9bEPfP3XI-GrdNnyzaTolK6YLpcY&libraries=places"></script>
+<script type="text/javascript" src="javascripts/application.js"></script>
 
 </body>
 </html>

@@ -37,7 +37,17 @@ header {
 	border-bottom: 0.3em solid #4273A8;
 }
 
-header a{
+header h4 {
+	position: relative;
+	top: 6em;
+}
+
+button {
+	background-color: inherit;
+	font-family: inherit;
+	font-size: 2em;
+	border: none; 
+	margin: 1em auto;
 }
 
 a {
@@ -47,9 +57,6 @@ a {
 
 img {
 	width: 30%;
-	border: 1em solid white;
-	border-bottom: 3em solid white;
-	box-shadow: 10px 10px 5px #888888;
 }
 
 form { 
@@ -58,6 +65,9 @@ form {
 
 input {
 	background-color: inherit;
+	width: 50%;
+	border: none;
+	border-bottom: 0.01em solid black;
 }
 
 main {
@@ -65,7 +75,7 @@ main {
 	margin: 1em;
 	text-align: center;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	display: inline-block;
 	border-right: 0.03em solid #4273A8;
 }
@@ -82,14 +92,29 @@ aside {
 }
 
 .tiles {
-	display: inline-block;
+	border: 1em solid white;
+	border-bottom: 3em solid white;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.tiles {
+	/*display: inline-block;*/
 	width: 30vh;
 	height: 30vh;
 	background-position: center;
 	background-size: 150%;
 	margin: 0.5em;
+	transition: all 0.5s;
+	display: inline-block;
 }
 
-.tiles h2 {
+
+.tiles:hover {
+	opacity: 0.9;
+	transform: scale(1.5) rotate(10deg);
+}
+
+div h2 {
 	color: #DB736C;
+	margin-top: 93%;
 }

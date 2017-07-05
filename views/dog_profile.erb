@@ -1,0 +1,20 @@
+<main>
+	<h3><%= @dog.user_name %>, <%= @dog.age %></h3>
+	<img src="<%= @dog.image_url %>" alt="">
+
+	<h2>About me: <%= @dog.bio %></h2>
+	
+	<% if logged_in? %>
+		<form action="/dogs/<%= @dog['id'] %>" method="post">
+			<label for="">Send a private message to <%= @dog.user_name %>:</label>
+			<br>
+			<input name="body" type="text">
+			<input name="recipient_id" type="hidden" value="<%= @dog.id %>">
+			<br>			
+			<button>send</button>
+		</form>
+		
+		<button>request connection</button>
+	<% end %>
+	
+</main>
