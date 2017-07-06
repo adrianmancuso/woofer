@@ -10,6 +10,5 @@ class Dog < ActiveRecord::Base
 		class_name: "PrivateMessage",
 		foreign_key: "recipient_id"
 
-
 end
 

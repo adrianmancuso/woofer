@@ -22,13 +22,14 @@ CREATE TABLE leashes(
 	dog_one_id integer,
 	dog_two_id integer
 );
--- leashes are not create in psql as of yet
+-- leashes are not created in psql as of yet
 
 CREATE TABLE locations(
 	id serial4 primary key,
 	location_radius circle,
 	inhabitant_id integer[]  
 );
+-- can be dropped
 
 CREATE TABLE private_messages(
 	id serial4 primary key,
@@ -38,4 +39,3 @@ CREATE TABLE private_messages(
 );
 
 -- insert into dogs(user_name, image_url, age, bio, password_digest) values ('bobbydog', 'https://static.webshopapp.com/shops/024152/files/035868484/bobby-dog-collar-ibiza-silver.jpg', 12, 'I am a little dog with a big heart', 'boggy');
--- NOT DIGESTING PWORD;

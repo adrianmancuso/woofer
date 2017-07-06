@@ -2,7 +2,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'pry'
-require 'pg'
+# require 'pg'
 require 'httparty'
 
 require_relative 'db_config'
@@ -12,12 +12,12 @@ require_relative 'models/breed'
 require_relative 'models/location'
 require_relative 'models/private_message'
 
-def run_sql(sql)
-	conn = PG.connect(dbname: 'woofer')
-	result = conn.exec(sql)
-	conn.close
-	result
-end
+# def run_sql(sql)
+# 	conn = PG.connect(dbname: 'woofer')
+# 	result = conn.exec(sql)
+# 	conn.close
+# 	result
+# end
 
 helpers do
 
@@ -73,6 +73,10 @@ patch '/dogs/:id' do
 	@dog.image_url = params[:image_url]
 	@dog.age = params[:age]
 	@dog.bio = params[:bio]
+	@dog.address = params[:address]
+	@geo_loc = get_location(params[:address])
+	coordinates = @geo_loc["lat"],@geo_loc["lng"]
+	@dog.geo_location = coordinates
 	@dog.save
 	redirect '/'
 end
@@ -102,6 +106,6 @@ post '/dogs/:id' do
 end
 
 def get_location(address)
-	api_call = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDSomp9bEPfP3XI-GrdNnyzaTolK6YLpcY")
+	api_call = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + ENV["GOOGLE_KEY"])
 	api_call["results"][0]["geometry"]["location"]
 end
