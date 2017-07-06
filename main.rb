@@ -1,8 +1,8 @@
      
 require 'sinatra'
-require 'sinatra/reloader'
-require 'pry'
-# require 'pg'
+# require 'sinatra/reloader'
+# require 'pry'
+require 'pg'
 require 'httparty'
 
 require_relative 'db_config'
@@ -30,7 +30,6 @@ helpers do
 	end
 
 end
-
 
 enable :sessions
 
