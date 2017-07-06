@@ -3,6 +3,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'pry'
 require 'pg'
+require 'httparty'
 
 require_relative 'db_config'
 require_relative 'models/dog'
@@ -44,7 +45,9 @@ get '/sign-up' do
 end
 
 post '/sign-up' do
-	@new_user = Dog.create(user_name: params[:user_name], image_url: params[:image_url], age: params[:age], bio: params[:bio], password: params[:password])
+	@geo_loc = get_location(params[:address])
+	coordinates = @geo_loc["lat"],@geo_loc["lng"]
+	@new_user = Dog.create(user_name: params[:user_name], image_url: params[:image_url], age: params[:age], bio: params[:bio], address: params[:address], geo_location: coordinates, password: params[:password])
 	session.clear
 	redirect '/login'
 end
@@ -96,4 +99,9 @@ post '/dogs/:id' do
 	@dog = Dog.find(params[:id])
 	@new_message = PrivateMessage.create(body: params[:body], recipient_id: params[:recipient_id], sender_id: current_user.id)
 	erb :dog_profile
+end
+
+def get_location(address)
+	api_call = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDSomp9bEPfP3XI-GrdNnyzaTolK6YLpcY")
+	api_call["results"][0]["geometry"]["location"]
 end

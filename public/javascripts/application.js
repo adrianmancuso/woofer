@@ -1,7 +1,7 @@
 var userInput = document.getElementById('autocomplete');
+var signUpButton = document.getElementById('signup');
 
 var options = {
-	// types: ['park', 'cafe'],
 	componentRestrictions: {country: "AU"}
 };
 
