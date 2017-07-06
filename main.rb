@@ -34,7 +34,11 @@ end
 enable :sessions
 
 get '/' do
-	@dogs = Dog.all
+	if logged_in?
+		long = current_user.longitude
+		@nearby_dogs = Dog.where(longitude: ((long-1)..(long+1)))
+	end
+	@dogs = Dog.all	
   erb :index
 end
 
@@ -45,8 +49,7 @@ end
 
 post '/sign-up' do
 	@geo_loc = get_location(params[:address])
-	coordinates = @geo_loc["lat"],@geo_loc["lng"]
-	@new_user = Dog.create(user_name: params[:user_name], image_url: params[:image_url], age: params[:age], bio: params[:bio], address: params[:address], geo_location: coordinates, password: params[:password])
+	@new_user = Dog.create(user_name: params[:user_name], image_url: params[:image_url], age: params[:age], bio: params[:bio], address: params[:address], longitude: @geo_loc["lng"], latitude: @geo_loc["lat"], password: params[:password])
 	session.clear
 	redirect '/login'
 end
@@ -74,8 +77,8 @@ patch '/dogs/:id' do
 	@dog.bio = params[:bio]
 	@dog.address = params[:address]
 	@geo_loc = get_location(params[:address])
-	coordinates = @geo_loc["lat"],@geo_loc["lng"]
-	@dog.geo_location = coordinates
+	@dog.longitude = @geo_loc["lng"]
+	@dog.latitude = @geo_loc["lat"]
 	@dog.save
 	redirect '/'
 end

@@ -5,7 +5,7 @@
 	<img src="<%= current_user.image_url %>" alt="">
 
 	<h3>Start connecting with dogs near you:</h3>
-	<% @dogs.each do |dog| %>
+	<% @nearby_dogs.each do |dog| %>
 		<a href="/dogs/<%= dog['id'] %>">
 			<div class="tiles" style="background-image: url(<%= dog['image_url'] %>);">
 				<h2><%= dog['user_name'] %></h2>
