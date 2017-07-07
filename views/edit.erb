@@ -1,20 +1,25 @@
+<main>
 <h2>edit your profile</h2>
 
-<form action="/dogs/<%= current_user.id %>" method="post">
-	<input type="hidden" name="_method" value="patch">
+	<form action="/dogs/<%= current_user.id %>" method="post">
+		<input type="hidden" name="_method" value="patch">
 
-	<label for="">Upload an image</label>
-	<input name="image_url" type="url" value="<%= current_user.image_url %>">
-	<br>
-	<label for="">Age</label>
-	<input name="age"	type="number" value="<%= current_user.age %>">
-	<br>
-	<label for="">Address</label>
-	<input id="autocomplete" name="address"	type="text" value="<%= current_user.address%>">
-	<br>
-	<label for="">A bit about you</label>
-	<input name="bio" type="text" value="<%= current_user.bio %>">
+		<label for="">Upload an image</label>
+		<input name="image_url" type="url" value="<%= current_user.image_url %>">
+		<br>
+		<label for="">Age</label>
+		<input name="age"	type="number" value="<%= current_user.age %>">
+		<br>
+		<label for="">Address</label>
+		<input id="autocomplete" name="address"	type="text" value="<%= current_user.address%>">
+		<br>
+		<label for="">A bit about you</label>
+		<input name="bio" type="text" value="<%= current_user.bio %>">
 
-	<br>
-	<button>update profile</button>
-</form>
+		<br>
+		<button>update profile</button>
+	</form>
+
+	<a href="/confirmation"> <button>delete Account</button> </a>
+
+</main>

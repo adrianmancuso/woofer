@@ -37,7 +37,7 @@
 	<% if current_user.received_messages.count > 0 %>
 		<% current_user.received_messages.each do |message|%>
 			<p><%= message['body'] %></p>
-			<p> <b>sent by: <%= @dogs.find(message[:sender_id]).user_name %> </b> </p>
+			<p> <b>sent by: <a href="/dogs/<%= message[:sender_id] %>"><%= @dogs.find(message[:sender_id]).user_name %> </a> </b> </p>
 		<%end%> 
 	<%end%> 
 
@@ -45,7 +45,7 @@
 	<% if current_user.sent_messages.count > 0 %>				
 		<% current_user.sent_messages.each do |message|%>
 			<p><%= message['body'] %></p>
-			<p> <b>sent to: <%= @dogs.find(message[:recipient_id]).user_name %> </b> </p>
+			<p> <b>sent to: <a href="/dogs/<%= message[:recipient_id] %>"> <%= @dogs.find(message[:recipient_id]).user_name %> </a> </b> </p>
 		<%end%>
 	<%end%>
 </aside>

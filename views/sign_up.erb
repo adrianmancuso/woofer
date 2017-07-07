@@ -1,23 +1,31 @@
-<h2>Ready for a new leash on life?</h2>
+<main>
 
-<form action="/sign-up" method="post">
-	<label for="">User Name</label>
-	<input name="user_name" type="text">
-	<br>
-	<label for="">Upload an image</label>
-	<input name="image_url" type="url">
-	<br>
-	<label for="">Age</label>
-	<input name="age"	type="number">
-	<br>
-	<label for="">Address</label>
-	<input id="autocomplete" name="address"	type="text">
-	<br>
-	<label for="">A bit about you</label>
-	<input name="bio" type="text">
-	<br>
-	<label for="">Password</label>
-	<input name="password" type="password">
-	<br>
-	<button>Sign-Up</button>
-</form>
+	<h2>Ready for a new leash on life?</h2>
+
+	<form action="/sign-up" method="post">
+		<label for="">User Name</label>
+		<input name="user_name" type="text">
+		<br>
+		<label for="">Upload an image</label>
+		<input name="image_url" type="url">
+		<br>
+		<label for="">Age</label>
+		<input name="age"	type="number">
+		<br>
+		<label for="">Address</label>
+		<input id="autocomplete" name="address"	type="text">
+		<br>
+		<label for="">A bit about you</label>
+		<input name="bio" type="text">
+		<br>
+		<label for="">Password</label>
+		<input name="password" type="password">
+		<br>
+		<button>Sign-Up</button>
+
+		<% if @new_user != nil %>
+					<p class="error"><%= @new_message.errors.full_messages %></p>
+				<% end %>
+	</form>
+
+</main>

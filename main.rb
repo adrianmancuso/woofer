@@ -94,9 +94,25 @@ post '/dogs/:id' do
 	@dogs = Dog.all
 	@dog = Dog.find(params[:id])
 	@new_message = PrivateMessage.create(body: params[:body], recipient_id: params[:recipient_id], sender_id: current_user.id)
-	# binding.pry
-	
 	erb :dog_profile
+end
+
+delete '/dogs/:id' do
+
+	# need to delete previous messages
+	# delete from private_messages where recipient_id = current_user.id;
+	# delete from private_messages where sender_id = current_user.id;
+
+
+	@dog = Dog.find(current_user.id)
+	@dog.destroy
+
+	redirect '/'
+end
+
+get '/confirmation' do
+	@dogs = Dog.all
+	erb :confirmation
 end
 
 def get_location(address)
