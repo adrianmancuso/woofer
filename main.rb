@@ -1,23 +1,13 @@
      
 require 'sinatra'
-# require 'sinatra/reloader'
-# require 'pry'
-require 'pg'
+require 'sinatra/reloader'
+require 'pry'
 require 'httparty'
 
 require_relative 'db_config'
 require_relative 'models/dog'
 require_relative 'models/leash'
-require_relative 'models/breed'
-require_relative 'models/location'
 require_relative 'models/private_message'
-
-# def run_sql(sql)
-# 	conn = PG.connect(dbname: 'woofer')
-# 	result = conn.exec(sql)
-# 	conn.close
-# 	result
-# end
 
 helpers do
 
@@ -35,7 +25,7 @@ enable :sessions
 
 get '/' do
 	if logged_in?
-		long = current_user.longitude
+		long = current_user.longitude #too big an area, currently 222km
 		@nearby_dogs = Dog.where(longitude: ((long-1)..(long+1)))
 	end
 	@dogs = Dog.all	
@@ -104,6 +94,8 @@ post '/dogs/:id' do
 	@dogs = Dog.all
 	@dog = Dog.find(params[:id])
 	@new_message = PrivateMessage.create(body: params[:body], recipient_id: params[:recipient_id], sender_id: current_user.id)
+	# binding.pry
+	
 	erb :dog_profile
 end
 

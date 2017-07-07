@@ -9,12 +9,14 @@
 			<label for="">Send a private message to <%= @dog.user_name %>:</label>
 			<br>
 			<input name="body" type="text">
+			<% if @new_message != nil %>
+				<p class="error"><%= @new_message.errors.full_messages[0] %></p>
+			<% end %>
 			<input name="recipient_id" type="hidden" value="<%= @dog.id %>">
 			<br>			
 			<button>send</button>
 		</form>
 		
-		<button>request connection</button>
 	<% end %>
 	
 </main>
