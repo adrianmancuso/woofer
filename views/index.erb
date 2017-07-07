@@ -1,21 +1,16 @@
 	<% if logged_in? %>
-<main>
-	<h3>Hi <%= current_user.user_name %>!</h3>
+		<main>
+			<h3>Hi <%= current_user.user_name %>!</h3>
 
-	<img src="<%= current_user.image_url %>" alt="">
+			<img src="<%= current_user.image_url %>" alt="">
 
-	<h3>Start connecting with dogs near you:</h3>
-	<% @nearby_dogs.each do |dog| %>
-		<a href="/dogs/<%= dog['id'] %>">
-			<div class="tiles" style="background-image: url(<%= dog['image_url'] %>);">
-				<h2><%= dog['user_name'] %></h2>
-			</div>
-		</a>
-	<% end %>
-
-
-</main> 
-
-
- 
+			<h3>Start connecting with dogs near you:</h3>
+			<% @nearby_dogs.each do |dog| %>
+				<a href="/dogs/<%= dog['id'] %>">
+					<div class="tiles" style="background-image: url(<%= dog['image_url'] %>);">
+						<h2><%= dog['user_name'] %></h2>
+					</div>
+				</a>
+			<% end %>
+		</main> 
 	<%end%>

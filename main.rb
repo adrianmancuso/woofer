@@ -1,7 +1,7 @@
      
 require 'sinatra'
-require 'sinatra/reloader'
-require 'pry'
+# require 'sinatra/reloader'
+# require 'pry'
 require 'httparty'
 
 require_relative 'db_config'
@@ -98,15 +98,8 @@ post '/dogs/:id' do
 end
 
 delete '/dogs/:id' do
-
-	# need to delete previous messages
-	# delete from private_messages where recipient_id = current_user.id;
-	# delete from private_messages where sender_id = current_user.id;
-
-
 	@dog = Dog.find(current_user.id)
 	@dog.destroy
-
 	redirect '/'
 end
 

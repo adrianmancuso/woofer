@@ -1,5 +1,6 @@
 <main>
-<h2>edit your profile</h2>
+	
+	<h2>edit your profile</h2>
 
 	<form action="/dogs/<%= current_user.id %>" method="post">
 		<input type="hidden" name="_method" value="patch">
@@ -20,6 +21,6 @@
 		<button>update profile</button>
 	</form>
 
-	<a href="/confirmation"> <button>delete Account</button> </a>
+	<a href="/confirmation"> <button>delete account</button> </a>
 
 </main>
