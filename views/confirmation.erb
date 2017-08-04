@@ -1,12 +1,12 @@
 <main>
-	<h3>Awww no :(</h3>
+  <h3>Awww no :(</h3>
 
-	<p>Are you sure you want to remove your account? This can not be undone and will delete all of your messages and personal information!</p>
+  <p>Are you sure you want to remove your account? This can not be undone and will delete all of your messages and personal information!</p>
 
-	<a href="/"> <button>No! No! I take it all back!</button> </a>
-	
-	<form action="/dogs/<%= current_user.id %>" method="post">
-		<input type="hidden" name="_method" value="delete">
-		 <button>My time here is over - let's do it</button>
-	</form>
+  <a href="/"> <button>No! No! I take it all back!</button> </a>
+  
+  <form action="/dogs/<%= current_user.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+     <button>My time here is over - let's do it</button>
+  </form>
 </main>
